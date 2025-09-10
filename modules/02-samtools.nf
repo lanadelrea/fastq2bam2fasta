@@ -94,17 +94,11 @@ process samtools_consensus {
     tag "Creating the consensus fasta"
     container 'staphb/samtools:latest'
 
-    publishDir (
-        path: "${params.out_dir}",
-        mode: 'copy',
-        overwrite: 'true',
-    )
-
     input:
     tuple val (sample), path (bam), path (bai)
 
     output:
-    path ('*.fasta')
+    tuple val (sample), path ('*.fasta'), emit: fasta
 
     script:
     """

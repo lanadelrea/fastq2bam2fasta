@@ -8,6 +8,7 @@ include { samtools_sort } from '../modules/02-samtools.nf'
 include { samtools_markdup } from '../modules/02-samtools.nf'
 include { samtools_view } from '../modules/02-samtools.nf'
 include { samtools_consensus } from '../modules/02-samtools.nf'
+include { renamefasta } from '../modules/03-seqkit.nf'
 
 workflow ont {
 
@@ -24,4 +25,5 @@ workflow ont {
              samtools_markdup( samtools_sort.out.bam_sort )
              samtools_view( samtools_markdup.out.bam_markdup )
              samtools_consensus( samtools_view.out.bam )
+             renamefasta( samtools_consensus.out.fasta )
 }
