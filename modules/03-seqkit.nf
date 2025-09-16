@@ -16,6 +16,7 @@ process renamefasta {
 
     script:
     """
-    seqkit replace -p 'MN908947.3' -r ${sample} ${fasta} > ${sample}.fasta
+    seqkit replace -p 'MN908947.3' -r ${sample} ${fasta} > ${sample}_renamed.fasta
+    mv ${sample}_renamed.fasta > ${sample}.fasta
     """
 }
